@@ -1,8 +1,13 @@
 import { useState, useEffect } from 'react';
-import ReactMapGL, { Marker, Popup } from 'react-map-gl';
+import ReactMapGL, { Marker, Popup, NavigationControl } from 'react-map-gl';
 import * as parkData from './data/skateboard-parks.json';
 
 function App() {
+  const navControlStyle = {
+    right: 10,
+    top: 10,
+  };
+
   const [viewport, setViewport] = useState({
     latitude: 45.4211,
     longitude: -75.6903,
@@ -34,6 +39,7 @@ function App() {
           setViewport(viewport);
         }}
       >
+        <NavigationControl style={navControlStyle} />
         {parkData.features.map((park) => (
           <Marker
             key={park.properties.PARK_ID}
